@@ -1,11 +1,13 @@
 # https://git-scm.com/docs/git-config
 
 [alias]
+	st = status
+
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
-	# Switch to latest main branch
-	fresh = !git stash && git checkout main && git pull origin main
+	# Cleanup repoistory and switch to main branch
+	fresh = !git stash && git checkout main && git pull origin main && git sweep
 
 	# Get root git directory
 	root = git rev-parse --show-toplevel
@@ -22,7 +24,10 @@
 	amend = commit --amend --reuse-message=HEAD
 
 	# Interactive rebase with the given number of latest commits.
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+	rb = "!r() { git rebase -i HEAD~$1; }; r"
+
+	# Remove branches that have already been merged with main.
+	sweep = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 	# List contributors with number of commits.
 	contrib = shortlog --summary --numbered

@@ -27,12 +27,9 @@ if command -v code &>/dev/null; then
     export EDITOR="code --wait"
 fi
 
-# Warning messages
+# Warn about sourcing zshrc
 function source ~/.zshrc {
   echo "Do NOT run 'source ~/.zshrc'. Instead run 'omz reload'."
-}
-function source .zshrc {
-  echo "Do NOT run 'source .zshrc'. Instead run 'omz reload'."
 }
 
 # Source local configurations
