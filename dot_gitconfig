@@ -1,0 +1,40 @@
+# https://git-scm.com/docs/git-config
+
+[alias]
+	# View abbreviated SHA, description, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+	# Switch to latest main branch
+	fresh = !git stash && git checkout main && git pull origin main
+
+	# Get root git directory
+	root = git rev-parse --show-toplevel
+
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch --all
+	remotes = remote --verbose
+
+	# List aliases
+	alias = config --get-regexp alias
+
+	# Amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+
+	# Interactive rebase with the given number of latest commits.
+	reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+	# List contributors with number of commits.
+	contrib = shortlog --summary --numbered
+
+	# Show the user email for the current repository.
+	whoami = config user.email
+
+[core]
+	excludesfile = ~/.gitignore
+
+[include]
+	path = ~/.gitconfig.local
+
+[init]
+	defaultBranch = main
