@@ -1,0 +1,13 @@
+alias dc='docker-compose'
+alias ll='ls -al'
+alias chez='chezmoi'
+alias ppath='printf "%s\n" $path'
+alias venv='python3 -m venv .venv'
+alias vact='source .venv/bin/activate'
+alias kl='kubectl'
+alias rm-containers='docker container rm $(docker ps -aq)'
+alias stop-containers='docker container stop $(docker ps -q)'
+alias git-root='cd $(git rev-parse --show-toplevel)'
+alias pip-clean='pip freeze | xargs pip uninstall -y'
+
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local
