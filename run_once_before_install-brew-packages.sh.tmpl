@@ -1,8 +1,8 @@
-readonly BREW_URL='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
-readonly BREW_FILE='{{ .chezmoi.sourceDir }}/Brewfile'
-
 {{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
+
+readonly BREW_URL='https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'
+readonly BREW_FILE='{{ .chezmoi.sourceDir }}/Brewfile'
 
 if command -v brew >/dev/null 2>&1; then
     :
