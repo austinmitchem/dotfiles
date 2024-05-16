@@ -32,9 +32,35 @@
 
 [core]
 	excludesfile = ~/.gitignore
+	editor = code --wait --new-window
+
+[checkout]
+	defaultRemote = origin
+
+[credential]
+	helper = osxkeychain
+
+[diff]
+	tool = vscode
+
+[difftool "vscode"]
+	cmd = code --wait --diff --new-window $LOCAL $REMOTE
+
+[fetch]
+	prune = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [include]
 	path = ~/.gitconfig.local
 
 [init]
 	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+	default = simple
