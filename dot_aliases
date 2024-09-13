@@ -1,5 +1,6 @@
 alias dc='docker-compose'
 alias ll='ls -al'
+alias cl='clear'
 alias cz='chezmoi'
 alias ppath='printf "%s\n" $path'
 alias kl='kubectl'
