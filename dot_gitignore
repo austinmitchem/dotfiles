@@ -7,3 +7,9 @@
 # Folder view configuration files
 .DS_Store
 Desktop.ini
+
+# Sqlite
+.sqlite
+
+# Gitlab CI Local
+.gitlab-ci-local
