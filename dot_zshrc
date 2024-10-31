@@ -38,6 +38,17 @@ if command -v code &>/dev/null; then
     export EDITOR="code --wait"
 fi
 
+# Zstyle configurations
+zstyle ':autocomplete:*' delay 0.5
+zstyle ':autocomplete:*' min-input 3
+
+# History configurations
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
 # Source local configurations
 [[ -f ~/.secrets.local ]] && source ~/.secrets.local
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
