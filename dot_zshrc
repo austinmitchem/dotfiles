@@ -20,6 +20,7 @@ export NVM_LAZY_LOAD_EXTRA_COMMANDS=('make')
 
 # Oh My Zsh configurations
 export ZSH="$HOME/.oh-my-zsh"
+DISABLE_AUTO_UPDATE="true" # keeps omz source directory up to date with chemzmoi source state
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete zsh-nvm dotenv python colored-man-pages safe-paste you-should-use)
 source $ZSH/oh-my-zsh.sh
