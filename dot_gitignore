@@ -13,3 +13,6 @@ Desktop.ini
 
 # Gitlab CI Local
 .gitlab-ci-local
+
+# Local test files
+*.local.*
