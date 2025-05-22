@@ -1,4 +1,4 @@
-alias dc='docker-compose'
+alias dc='docker compose'
 alias ll='ls -al'
 alias cl='clear'
 alias cz='chezmoi'

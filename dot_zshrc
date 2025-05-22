@@ -16,7 +16,7 @@ export PYTHON_AUTO_VRUN=true
 export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 export NVM_COMPLETION=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('make')
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('make' 'code')
 
 # Oh My Zsh configurations
 export ZSH="$HOME/.oh-my-zsh"
