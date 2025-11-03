@@ -7,7 +7,7 @@
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# Cleanup repository and switch to main branch
-	fresh = !git stash && git checkout main && git pull origin main && git sweep
+	fresh = !git stash && git switch main && git pull origin main
 
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
@@ -23,8 +23,14 @@
 	# Interactive rebase with the given number of latest commits.
 	rb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove branches that have already been merged with main.
-	sweep = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Remove branches that have been merged with main.
+	rm-merged = "!git for-each-ref --format '%(refname:short)' --merged refs/heads/ | xargs -n 1 git branch -d"
+
+	# Remove all local branches.
+	rm-all = "!git for-each-ref --format '%(refname:short)' refs/heads | grep -v \"master\\|main\" | xargs git branch -d"
+
+	# Force removes all local branches.
+	rmf-all = "!git for-each-ref --format '%(refname:short)' refs/heads | grep -v \"master\\|main\" | xargs git branch -D"
 
 	# List contributors with number of commits.
 	contrib = shortlog --summary --numbered

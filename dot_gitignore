@@ -16,3 +16,4 @@ Desktop.ini
 
 # Local test files
 *.local.*
+*.local/*
