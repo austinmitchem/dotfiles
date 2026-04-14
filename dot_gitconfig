@@ -20,16 +20,22 @@
 	# Amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
 
-	# Interactive rebase with the given number of latest commits.
+	# Interactive rebase with the given number of latest commits. (e.g. `git rb 3`)
 	rb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# Remove branches that have been merged with main.
-	rm-merged = "!git for-each-ref --format '%(refname:short)' --merged refs/heads/ | xargs -n 1 git branch -d"
+	# Show local branches that no longer exist on remote.
+	gone = "!git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads/ | awk '$2 == \"[gone]\" {print $1}'"
+
+	# Remove local branches that no longer exist on remote.
+	rm-gone = "!git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads/ | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -d"
+
+	# Force removes local branches that no longer exist on remote. (Force is necessary when using fast-forward only merges).
+	rmf-gone = "!git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads/ | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
 
 	# Remove all local branches.
 	rm-all = "!git for-each-ref --format '%(refname:short)' refs/heads | grep -v \"master\\|main\" | xargs git branch -d"
 
-	# Force removes all local branches.
+	# Force removes all local branches. (Force is necessary when using fast-forward only merges).
 	rmf-all = "!git for-each-ref --format '%(refname:short)' refs/heads | grep -v \"master\\|main\" | xargs git branch -D"
 
 	# List contributors with number of commits.
@@ -37,6 +43,9 @@
 
 	# Show the user email for the current repository.
 	whoami = config user.email
+
+	# Diff the current working tree against main.
+	df = diff origin/main...HEAD
 
 [core]
 	excludesfile = ~/.gitignore
