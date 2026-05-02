@@ -17,3 +17,6 @@ Desktop.ini
 # Local test files
 *.local.*
 *.local/*
+
+# OpenCode
+.opencode

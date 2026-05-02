@@ -1,3 +1,5 @@
+alias reload='exec $SHELL'
+alias rl='reload'
 alias dc='docker compose'
 alias ll='ls -al'
 alias cl='clear'
@@ -8,5 +10,6 @@ alias rm-containers='docker container rm $(docker ps -aq)'
 alias stop-containers='docker container stop $(docker ps -q)'
 alias git-root='cd $(git rev-parse --show-toplevel)'
 alias pip-clean='pip freeze | xargs pip uninstall -y'
+alias oc='opencode'
 
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
