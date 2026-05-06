@@ -1,6 +1,5 @@
 tap "1password/tap"
 brew "chezmoi"
-brew "docker-compose"
 brew "fnm"
 brew "git"
 brew "jq"
