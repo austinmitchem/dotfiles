@@ -10,7 +10,7 @@ else
     /bin/bash -c "$(curl -fsSL $BREW_URL)"
 fi
 
-brew bundle --no-lock --file="$BREW_FILE"
+brew bundle --file="$BREW_FILE"
 
 fnm install --lts
 
