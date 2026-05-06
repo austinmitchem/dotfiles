@@ -17,7 +17,7 @@ source "$ZINIT_HOME/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Prompt — Starship
+# Prompt: Starship
 eval "$(starship init zsh)"
 export STARSHIP_LOG=error
 
