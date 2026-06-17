@@ -28,21 +28,27 @@ zstyle ':autocomplete:*' delay 1
 zstyle ':autocomplete:*' min-input 3
 zinit light marlonrichert/zsh-autocomplete
 
-# Async plugins (loaded after first prompt, no startup cost)
-zinit ice wait lucid
-zinit light zsh-users/zsh-autosuggestions
-
-zinit ice wait lucid
-zinit light zdharma-continuum/fast-syntax-highlighting
+# Async plugins (loaded after prompt, no startup cost)
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 
 # OMZ utility plugins via snippets
 zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/safe-paste/safe-paste.plugin.zsh
+zinit snippet OMZ::lib/theme-and-appearance.zsh
 
 # Completion
 autoload -Uz compinit
 compinit -C
+
+# Characters considered part of a word for moving the cursor with Option+Left/Right
+export WORDCHARS='_-'
 
 # Compile .zshrc for faster sourcing on subsequent loads
 if [[ ! -f ~/.zshrc.zwc || ~/.zshrc -nt ~/.zshrc.zwc ]]; then
