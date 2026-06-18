@@ -37,15 +37,16 @@ zinit wait lucid light-mode for \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions
 
-# OMZ utility plugins via snippets
-zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zinit snippet OMZ::plugins/safe-paste/safe-paste.plugin.zsh
-zinit snippet OMZ::lib/theme-and-appearance.zsh
+# OMZ utility plugins
+zinit wait lucid for \
+  OMZ::plugins/dotenv/dotenv.plugin.zsh \
+  OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh \
+  OMZ::plugins/safe-paste/safe-paste.plugin.zsh \
+  OMZ::lib/theme-and-appearance.zsh
 
-# Completion
-autoload -Uz compinit
-compinit -C
+# Completion (not needed when using zsh-autocomplete)
+# autoload -Uz compinit
+# compinit -C
 
 # Characters considered part of a word for moving the cursor with Option+Left/Right
 export WORDCHARS='_-'
@@ -69,14 +70,17 @@ if command -v code &>/dev/null; then
 fi
 
 # History
-HISTSIZE=2000
-SAVEHIST=2000
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
-unsetopt SHARE_HISTORY
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
 # zsh-autosuggestions
 # Disable match_prev_cmd since it doesn't work with history configurations that alter history.
