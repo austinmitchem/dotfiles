@@ -18,19 +18,21 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Prompt: Starship
-eval "$(starship init zsh)"
 export STARSHIP_LOG=error
+eval "$(starship init zsh)"
 
 # Plugins
 
 # zsh-autocomplete must load synchronously (before async plugins)
-zstyle ':autocomplete:*' delay 1
+# Let zsh find the cached worker without a failed autoload lookup on zsh 5.9.
+fpath=("${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zasync" $fpath)
+zstyle ':autocomplete:*' delay 0.5
 zstyle ':autocomplete:*' min-input 3
 zinit light marlonrichert/zsh-autocomplete
 
 # Async plugins (loaded after prompt, no startup cost)
 zinit wait lucid light-mode for \
-  atinit"zicompinit; zicdreplay" \
+  atinit"zicdreplay" \
       zdharma-continuum/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
@@ -79,7 +81,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
-setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 # zsh-autosuggestions
